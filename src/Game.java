@@ -15,17 +15,17 @@ public class Game {
                 while (player.isAlive() && warrior.isAlive()) {
                     System.out.println("Выбери тип атаки: ");
                     for (int i = 0; i < player.getSkills().size(); i++) {
-                        System.out.println(i + ". " + player.getSkills().get(i).getName());
-                    }
-                    int attackIndex = scanner.nextInt();
-                    player.attack(warrior, player.getSkills().get(attackIndex));
-                    warrior.attack(player, warrior.getSkills().get(0));
-                    System.out.println("\nТвои hp: " + player.getHealth());
-                    System.out.println("hp воина: " + warrior.getHealth());
-                    nextTurnObserver.notify(0);
-                    if (!warrior.isAlive()) {
-                        nextTurnObserver.unsubscribe(warrior);
-                    }
+                        System.out.println(i + ". " + player.getSkills().get(i).getName());}
+                        int attackIndex = scanner.nextInt();
+                        player.attack(warrior, player.getSkills().get(attackIndex));
+                        warrior.attack(player, warrior.getSkills().get(0));
+                        nextTurnObserver.notify(0);
+                        System.out.println("\nТвои hp: " + player.getHealth());
+                        System.out.println("hp воина: " + warrior.getHealth()+"\n");
+
+                        if (!warrior.isAlive()) {
+                            nextTurnObserver.unsubscribe(warrior);
+                        }
                 }
             } else if (userInput == 2) {
                 System.out.println("Ты убежал.");
